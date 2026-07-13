@@ -1,0 +1,13 @@
+project_id = "tywynhluzfemjwwopexk"
+
+[functions.generate-cv-content]
+verify_jwt = false
+
+[functions.analyze-ats-score]
+verify_jwt = false
+
+[functions.analyze-uploaded-cv]
+verify_jwt = false
+
+[functions.career-ai]
+verify_jwt = false
