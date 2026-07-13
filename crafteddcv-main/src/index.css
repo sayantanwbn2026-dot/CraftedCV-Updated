@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Crafted CV Design System - Monochrome Dark Theme */
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 0% 70%;
+
+    --radius: 0.5rem;
+
+    /* Monochrome tokens */
+    --gray-50: 0 0% 98%;
+    --gray-100: 0 0% 92%;
+    --gray-200: 0 0% 80%;
+    --gray-300: 0 0% 65%;
+    --gray-400: 0 0% 50%;
+    --gray-500: 0 0% 40%;
+    --gray-600: 0 0% 30%;
+    --gray-700: 0 0% 20%;
+    --gray-800: 0 0% 12%;
+    --gray-900: 0 0% 6%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 8%) 50%, hsl(0 0% 4%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(0 0% 20%) 0%, hsl(0 0% 10%) 100%);
+    --gradient-deep: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(0 0% 2%) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(0 0% 20%) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(0 0% 0% / 0.5);
+    --shadow-md: 0 8px 24px -8px hsl(0 0% 0% / 0.6);
+    --shadow-lg: 0 16px 48px -12px hsl(0 0% 0% / 0.7);
+    --shadow-glow: 0 0 60px hsl(0 0% 30% / 0.2);
+    --shadow-glow-white: 0 0 80px hsl(0 0% 100% / 0.08);
+  }
+
+  .dark {
+    /* Force same as root - dark mode only */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  /* Force dark mode */
+  html, body {
+    background-color: hsl(0 0% 4%);
+    color-scheme: dark;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-deep {
+    background: var(--gradient-deep);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-glow-white {
+    box-shadow: var(--shadow-glow-white);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(0 0% 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-subtle {
+    background: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 0% 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Scroll animations */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-animate-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-animate-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .scroll-animate-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-animate-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-animate-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-animate-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+  .stagger-6 { transition-delay: 0.6s; }
+
+  /* Parallax layers */
+  .parallax-slow {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .parallax-fast {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px hsl(0 0% 0% / 0.5);
+  }
+
+  .hover-glow {
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 40px hsl(0 0% 100% / 0.1);
+  }
+
+  /* Line decorations */
+  .line-glow {
+    position: relative;
+  }
+
+  .line-glow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 30%), transparent);
+  }
+
+  /* Infographic styles */
+  .infographic-circle {
+    @apply relative flex items-center justify-center rounded-full border border-border;
+    background: linear-gradient(135deg, hsl(0 0% 12%) 0%, hsl(0 0% 6%) 100%);
+  }
+
+  .infographic-line {
+    background: linear-gradient(90deg, transparent, hsl(0 0% 25%), transparent);
+    height: 1px;
+  }
+
+  .infographic-dot {
+    @apply w-2 h-2 rounded-full bg-foreground/50;
+  }
+
+  /* Grid pattern */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(hsl(0 0% 15%) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(0 0% 15%) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Glitch effect for hover */
+  .glitch-hover:hover {
+    animation: glitch 0.3s ease;
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+}
