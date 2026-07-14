@@ -1,4 +1,4 @@
-project_id = "tywynhluzfemjwwopexk"
+project_id = "afnogeyjwisgbufuzopq"
 
 [functions.generate-cv-content]
 verify_jwt = false
@@ -10,4 +10,10 @@ verify_jwt = false
 verify_jwt = false
 
 [functions.career-ai]
+verify_jwt = false
+
+[functions.import-cv]
+verify_jwt = false
+
+[functions.phone-auth]
 verify_jwt = false

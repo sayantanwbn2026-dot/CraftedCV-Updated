@@ -113,10 +113,10 @@ serve(async (req) => {
       });
     }
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 
-    if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+    if (!GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY is not configured");
     }
 
     const isText = fileType.toLowerCase() === "text/plain";
@@ -202,14 +202,14 @@ Respond ONLY in this exact JSON format:
 
     console.log(`Extracting CV data from ${fileType} file (${Math.round(contentValidation.sizeBytes / 1024)}KB)`);
 
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${GEMINI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "gemini-flash-lite-latest",
         messages,
       }),
     });
@@ -261,10 +261,10 @@ Respond ONLY in this exact JSON format:
 });
 
 async function extractFromText(text: string): Promise<Response> {
-  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 
-  if (!LOVABLE_API_KEY) {
-    throw new Error("LOVABLE_API_KEY is not configured");
+  if (!GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY is not configured");
   }
 
   const systemPrompt = `You are an expert CV/Resume parser. Your task is to extract all information from the provided CV text and return it in a structured JSON format.
@@ -320,14 +320,14 @@ Respond ONLY in this exact JSON format:
   "skills": "comma, separated, skills"
 }`;
 
-  const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+  const response = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${LOVABLE_API_KEY}`,
+      Authorization: `Bearer ${GEMINI_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "google/gemini-2.5-flash",
+      model: "gemini-flash-lite-latest",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: `Please extract all information from this CV/resume text:\n\n${text}` }
